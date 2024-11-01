@@ -1,10 +1,5 @@
-import express from "express";
+import { createApp } from "./app";
 
-const app = express();
-
-const PORT = 3001;
-
-app.use("/user", getUser);
-app.listen(PORT, () => {
-  console.log(`Runinging on PORT :${PORT}`);
+createApp().listen(3000, () => {
+  console.log(`Server started on http://localhost:3000.`);
 });
