@@ -1,25 +1,14 @@
 import express from "express";
-export function userFeatures() {
+import { getAllUsers } from "../../controllers";
+export function usersFeatures() {
   return {
     getUsersRouter() {
-      const router = express.Router();
-
-      router.get("/", async (req, res) => {
-        res.json({ messsage: "route is working for users" });
-        // res.json(await db.getAll());
-      });
-
-      router.get("/:id", async (req, res) => {
-        res.json({ messsage: "route is working for a single user" });
-        // res.json(await db.getAll());
-      });
-
-      router.post("/", async (req, res) => {
-        res.json({ messsage: "route is working for a single user" });
-        // res.json(await db.getAll());
-      });
-
-      return router;
+      const userRouter: express.Router = express.Router();
+      userRouter.get("/users", getAllUsers);
+      // userRouter.get("/:id", getUser);
+      // userRouter.post("/", signup);
+      // userRouter.post("/", login);
+      return userRouter;
     },
   };
 }

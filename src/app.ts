@@ -1,5 +1,5 @@
 import express from "express";
-import { userFeatures } from "./features";
+import { usersFeatures } from "./features";
 
 export function createApp() {
   const app = express();
@@ -8,9 +8,8 @@ export function createApp() {
     res.json({ status: "ready" });
   });
 
-  const userFeaturesObj = userFeatures();
-
-  app.use("/api/v1/user", userFeaturesObj.getRouter());
+  const users = usersFeatures();
+  app.use("/api/v1", users.getUsersRouter());
 
   return app;
 }
