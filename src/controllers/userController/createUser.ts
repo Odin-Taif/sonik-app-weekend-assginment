@@ -5,7 +5,7 @@ import { createUserSchema } from "../../validation/zod-validation";
 
 export const createUser = async (req: Request, res: Response) => {
   const userValidated = createUserSchema.safeParse(req.body);
-  if (!userValidated) {
+  if (!userValidated.success) {
     res.status(400).json({ success: false, message: "Input not valid!" });
   }
   const id = uuidv4();
