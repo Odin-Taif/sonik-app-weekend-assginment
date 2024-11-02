@@ -16,6 +16,7 @@ export const createUser = async (req: Request, res: Response) => {
   try {
     const newUser = { id, name, email, hashedPassword };
     await createNewUserInDb(newUser);
+
     res
       .status(201)
       .header("location", `/api/v1/users/${id}`)

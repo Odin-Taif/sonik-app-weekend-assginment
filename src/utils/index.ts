@@ -6,3 +6,5 @@ export * from "./getAllPostsFromDb";
 
 export * from "./getUserById";
 export * from "./getUserByEmail";
+
+export * from "./generateTokenAndSetCookie";
