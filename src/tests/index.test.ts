@@ -1,6 +1,6 @@
 import request from "supertest";
 import http from "http";
-import { createApp } from "./app";
+import { createApp } from "../app";
 
 describe("The Users API", () => {
   let server: http.Server;

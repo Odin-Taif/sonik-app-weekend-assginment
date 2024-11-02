@@ -4,8 +4,10 @@ import { createApp } from "../app";
 
 describe("The Users API", () => {
   const requsetPath = "/api/v1/users";
+
   let server: http.Server;
   const app = createApp();
+
   beforeAll(() => {
     server = app.listen(0);
   });
