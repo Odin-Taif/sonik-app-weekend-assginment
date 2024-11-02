@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { writeFile } from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
-import { User } from "../../../../types";
+import { User } from "../../../types";
 
 export const createUser = async (req: Request, res: Response) => {
   const id = uuidv4();
