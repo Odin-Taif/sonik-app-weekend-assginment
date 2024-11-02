@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { createNewUserInDb } from "../../utils";
 import { createUserSchema } from "../../validation/zod-validation";
@@ -10,9 +10,10 @@ export const createUser = async (req: Request, res: Response) => {
   }
   const id = uuidv4();
   const { name, email, password } = userValidated.data!;
+
   try {
     const newUser = { id, name, email, password };
-    await createNewUserInDb(`src/db/users`, newUser);
+    await createNewUserInDb(newUser);
     res
       .status(201)
       .header("location", `/api/v1/users/${id}`)

@@ -2,9 +2,8 @@ import { Request, Response } from "express";
 import { getPostsFromDb } from "../../utils";
 
 export const getPosts = async (req: Request, res: Response) => {
-  const postsDir = "src/db/posts";
   try {
-    const posts = await getPostsFromDb(postsDir);
+    const posts = await getPostsFromDb();
     res.json({
       success: true,
       msg: "Posts fetched successfully",

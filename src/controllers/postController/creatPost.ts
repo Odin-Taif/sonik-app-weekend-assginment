@@ -14,7 +14,7 @@ export const createPost = async (req: Request, res: Response) => {
   const postsDbDir = "./src/db/posts";
   const newPost = { id, post };
   try {
-    await createPostInDb(postsDbDir, newPost);
+    await createPostInDb(newPost);
     res
       .status(201)
       .header("location", `/api/v1/posts/${id}`)

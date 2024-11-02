@@ -19,7 +19,7 @@ describe("The Users API", () => {
       .send({
         name: "Alice Johnson",
         email: "alice.johnson@example.com",
-        age: 28,
+        password: "!fjasdfkjaAAfaidfo",
       })
       .expect(201);
 

@@ -3,8 +3,7 @@ import { getUsersFromDb } from "../../utils";
 
 export const getUser = async (req: Request, res: Response) => {
   const userId = req.params.id;
-  const usersDir = "src/db/users";
-  const users = await getUsersFromDb(usersDir);
+  const users = await getUsersFromDb();
   try {
     const user = users.find((user) => user.id === userId);
     if (!user) {

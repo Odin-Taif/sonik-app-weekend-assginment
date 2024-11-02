@@ -3,8 +3,8 @@ import { getPostsFromDb } from "../../utils";
 
 export const getPost = async (req: Request, res: Response) => {
   const postId = req.params.id;
-  const postsDir = "src/db/posts";
-  const posts = await getPostsFromDb(postsDir);
+
+  const posts = await getPostsFromDb();
   try {
     const post = posts.find((post) => post.id === postId);
     if (!post) {
