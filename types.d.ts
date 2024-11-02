@@ -8,4 +8,7 @@ export type User = {
 type Post = {
   id: string;
   post: string;
+  // content: string;
+  // timestamp: string;
+  // author: string;
 };

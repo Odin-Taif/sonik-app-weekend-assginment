@@ -30,6 +30,10 @@ export const createUserSchema = z.object({
   email: emailSchema,
   password: passwordSchema,
 });
+export const signinUserSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+});
 
 export const createPostSchema = z.object({
   post: postSchema,
