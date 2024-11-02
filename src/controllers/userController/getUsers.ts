@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getUsersFromDb } from "../../utils/getAllUserFromDb";
+import { getUsersFromDb } from "../../utils";
 
 export const getUsers = async (req: Request, res: Response) => {
   const usersDir = "src/db/users";
