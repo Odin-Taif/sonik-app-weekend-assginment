@@ -1,7 +1,6 @@
 import request from "supertest";
 import http from "http";
 
-import assert from "assert";
 import { readdir, unlink } from "fs";
 import { join } from "path";
 import { createApp } from "../../app";

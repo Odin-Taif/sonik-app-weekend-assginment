@@ -4,3 +4,8 @@ export type User = {
   email: string;
   age: number;
 };
+
+type Post = {
+  id: string;
+  post: string;
+};
