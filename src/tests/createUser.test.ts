@@ -4,7 +4,6 @@ import { createApp } from "../app";
 import assert from "assert";
 import { readdir, unlink } from "fs";
 import { join } from "path";
-import { User } from "../../types";
 const directory = `src/db/users`;
 
 describe("Create user tests", () => {
