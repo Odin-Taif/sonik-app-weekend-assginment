@@ -25,7 +25,7 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!validPassword) {
       res.status(400).json({ success: false, msg: "Incorrect password!" });
     }
-    const token = generateTokenAndSetCookie(res, existingUser.id);
+    const token = await generateTokenAndSetCookie(res, existingUser.id);
     res.status(200).json({
       success: true,
       msg: "User logged in successfully",

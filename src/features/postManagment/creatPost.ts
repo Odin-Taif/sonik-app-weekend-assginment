@@ -6,7 +6,7 @@ import { createPostSchema } from "../../validation/zod-validation";
 export const createPost = async (req: Request, res: Response) => {
   const postValidated = createPostSchema.safeParse(req.body);
   if (!postValidated.success) {
-    res.status(400).json({ success: false, message: "Input is invalid" });
+    res.status(400).json({ success: false, msg: "Input is invalid" });
     return;
   }
   const id = uuidv4();

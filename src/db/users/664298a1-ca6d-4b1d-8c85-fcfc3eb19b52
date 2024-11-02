@@ -1,1 +1,6 @@
-{"id":"664298a1-ca6d-4b1d-8c85-fcfc3eb19b52","name":"Alice Johdsfsdndsdfsdson","email":"alice.johfsdfsdfsdnson@example.com","hashedPassword":"$2a$10$.NdSUzRy0TYiwoKHBQAvXuqUaIaq0hU9foXIm8GgGvtecqUrB374O"}
+{
+  "id": "664298a1-ca6d-4b1d-8c85-fcfc3eb19b52",
+  "name": "Alice Johdsfsdndsdfsdson",
+  "email": "alice.johfsdfsdfsdnson@example.com",
+  "hashedPassword": "$2a$10$.NdSUzRy0TYiwoKHBQAvXuqUaIaq0hU9foXIm8GgGvtecqUrB374O"
+}
