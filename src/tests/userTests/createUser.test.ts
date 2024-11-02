@@ -1,9 +1,10 @@
 import request from "supertest";
 import http from "http";
-import { createApp } from "../app";
+
 import assert from "assert";
 import { readdir, unlink } from "fs";
 import { join } from "path";
+import { createApp } from "../../app";
 const directory = `src/db/users`;
 
 describe("Create user tests", () => {

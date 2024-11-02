@@ -1,5 +1,5 @@
 import express from "express";
-import { userRouter } from "./routes/userRouter/userRouter";
+import { postRouter, userRouter } from "./routes";
 
 export function createApp() {
   const app = express();
@@ -10,6 +10,7 @@ export function createApp() {
   });
 
   app.use("/api/v1", userRouter);
+  app.use("/api/v1", postRouter);
 
   return app;
 }
