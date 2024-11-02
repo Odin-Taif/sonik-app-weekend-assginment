@@ -1,5 +1,6 @@
 import e, { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
+import { hashSync } from "bcryptjs";
 import { createNewUserInDb } from "../../utils";
 import { createUserSchema } from "../../validation/zod-validation";
 
@@ -10,9 +11,10 @@ export const createUser = async (req: Request, res: Response) => {
   }
   const id = uuidv4();
   const { name, email, password } = userValidated.data!;
+  const hashedPassword = hashSync(password, 10);
 
   try {
-    const newUser = { id, name, email, password };
+    const newUser = { id, name, email, hashedPassword };
     await createNewUserInDb(newUser);
     res
       .status(201)

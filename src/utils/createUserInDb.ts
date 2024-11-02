@@ -5,7 +5,7 @@ export const createNewUserInDb = async ({
   id,
   name,
   email,
-  password,
+  hashedPassword,
 }: User) => {
   const usersDir = process.env.usersDbDir || "src/db/users";
   if (!process.env.usersDbDir) {
@@ -13,9 +13,8 @@ export const createNewUserInDb = async ({
       "Environment variable usersDbDir is not set. Using default path."
     );
   }
-  console.log(usersDir);
   await writeFile(
     `${usersDir}/${id}`,
-    JSON.stringify({ id, name, email, password })
+    JSON.stringify({ id, name, email, hashedPassword })
   );
 };

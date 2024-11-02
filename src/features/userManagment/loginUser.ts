@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { signinUserSchema } from "../../validation/zod-validation";
 import { getUserByEmail } from "../../utils";
+import { compareSync } from "bcryptjs";
 
 export const loginUser = async (req: Request, res: Response) => {
   const userValidated = signinUserSchema.safeParse(req.body);
@@ -18,6 +19,10 @@ export const loginUser = async (req: Request, res: Response) => {
         success: false,
         msg: "User does not exist!",
       });
+    }
+    const validPassword = compareSync(password, existingUser.hashedPassword);
+    if (!validPassword) {
+      res.status(400).json({ success: false, msg: "Incorrect password!" });
     }
     res.status(200).json({
       success: true,
