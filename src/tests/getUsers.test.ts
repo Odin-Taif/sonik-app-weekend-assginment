@@ -1,9 +1,9 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import request from "supertest";
 import http from "http";
-import { createApp } from "./app";
+import { createApp } from "../app";
 
 describe("The Users API", () => {
+  const requsetPath = "/api/v1/users";
   let server: http.Server;
   const app = createApp();
   beforeAll(() => {
@@ -14,8 +14,9 @@ describe("The Users API", () => {
     server.close();
   });
 
-  it("Server Status", async () => {
-    const response = await request(app).get("/status");
+  it("Get all users", async () => {
+    const response = await request(app).get(requsetPath);
+
     // Assertions
     expect(response.status).toBe(200);
   });

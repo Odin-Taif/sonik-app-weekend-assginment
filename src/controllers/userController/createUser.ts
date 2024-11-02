@@ -1,22 +1,20 @@
 import { Request, Response } from "express";
-import { mkdir, writeFile } from "fs/promises";
+import { writeFile } from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
+import { User } from "../../../../types";
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  age: number;
-};
 export const createUser = async (req: Request, res: Response) => {
   const id = uuidv4();
   const { name, email, age } = req.body;
-
   try {
     await createNewUser(`src/db/users`, { id, name, email, age });
-    res.status(201).header("location", `/api/v1/users/${id}`).json({ id });
+    res
+      .status(201)
+      .header("location", `/api/v1/users/${id}`)
+      .json({ id })
+      .json({ success: true, msg: "User created successfully" });
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
