@@ -3,6 +3,7 @@ export * from "./createUserInDb";
 
 export * from "./createPostInDb";
 export * from "./getAllPostsFromDb";
+export * from "./getPostsByUserFromDb";
 
 export * from "./getUserById";
 export * from "./getUserByEmail";

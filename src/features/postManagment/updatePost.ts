@@ -7,13 +7,11 @@ export const updatePost = async (req: Request, res: Response) => {
   const postId = req.params.id;
   const postContent = req.body.post;
   try {
-    const post = await db
+    await db
       .update(posts)
       .set({ content: postContent })
       .where(eq(posts.id, postId));
-    res
-      .status(200)
-      .json({ status: true, msg: "Post updated successfully", data: post });
+    res.status(200).json({ status: true, msg: "Post updated successfully" });
   } catch (error) {
     res.json({ status: false, msg: "something went wrong" });
     throw error;
