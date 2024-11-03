@@ -9,7 +9,9 @@ describe("post tests", () => {
   // postRouter.post("/post", verifyLogin, createPost);
 
   // postRouter.patch("/posts/:id", verifyLogin, updatePost);
+
   // postRouter.delete("/posts/:id", verifyLogin, deletePost);
+
   // postRouter.get("/posts/:authorid", verifyLogin, getPostsByAuthor);
 
   const testUser = {
@@ -90,5 +92,24 @@ describe("post tests", () => {
       .delete(`/api/v1/posts/:${id}`)
       .set("Cookie", [`token=${token}`]);
     expect(responseDelete.status).toBe(204);
+  });
+
+  it("should fetch all posts for each author", async () => {
+    const responseCreate = await request(app)
+      .post("/api/v1/post")
+      .set("Cookie", [`token=${token}`])
+      .send(testPost);
+    expect(responseCreate.status).toBe(201);
+    expect(responseCreate.body).toHaveProperty("success", true);
+
+    const {
+      post: { authorId },
+    } = responseCreate.body;
+
+    const responseGet = await request(app)
+      .get(`/api/v1/posts/:${authorId}`)
+      .set("Cookie", [`token=${token}`]);
+    expect(responseGet.status).toBe(200);
+    expect(responseGet.body).toHaveProperty("posts");
   });
 });
