@@ -5,6 +5,12 @@ Here’s a revised version of your README with improved structure, clarity, and 
 
 This README provides an overview of the API endpoints available in this application, as well as instructions for installation, usage, and an outline of a video presentation for project demonstration.
 
+## Features
+
+Here is the blueprint for the project:
+
+![Project Logo](./blueprint.png)
+
 ---
 
 ## Table of Contents
