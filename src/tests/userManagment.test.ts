@@ -10,7 +10,7 @@ const directory = `src/db/users`;
 describe("Create user tests", () => {
   let server: http.Server;
   const app = createApp();
-  const requsetPath = "/api/v1/users";
+
   function cleanCartsDb() {
     readdir(directory, (err: any, files: any) => {
       if (err) throw err;
@@ -32,9 +32,12 @@ describe("Create user tests", () => {
   });
 
   // userRouter.post("/user", createUser);
-  // userRouter.post("/login", loginUser);
+
   // userRouter.get("/users", getUsers);
+
   // userRouter.get("/users/:id", getUser);
+
+  // userRouter.post("/login", loginUser);
 
   it("create a user in local db", async () => {
     const response = await request(app)
@@ -56,9 +59,26 @@ describe("Create user tests", () => {
   });
 
   it("Get all users", async () => {
-    const response = await request(app).get(requsetPath);
+    const response = await request(app).get("/api/v1/users");
     // Assertions
     expect(response.status).toBe(200);
+  });
+
+  it("log in a user => create a user  => login to the new created user", async () => {
+    const responseCreated = await request(app)
+      .post("/api/v1/user")
+      .send({
+        name: "Alice Johnson",
+        email: "alice.johnson@example.com",
+        password: "!fjasdfkjaAAfaidfo",
+      })
+      .expect(201);
+
+    const responseLogin = await request(app).post("/api/v1/login").send({
+      email: "alice.johnson@example.com",
+      password: "!fjasdfkjaAAfaidfo",
+    });
+    expect(responseLogin.status).toBe(200);
   });
 
   it("get single user | create a user => get the id => get the newly created user", async () => {

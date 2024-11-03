@@ -38,14 +38,14 @@ describe("post tests", () => {
   });
   //  we first create a user => login the users => get the token => create post with token included in the req.cookies=> fetch post
 
-  it.skip("should fetch all posts", async () => {
+  it("should fetch all posts", async () => {
     const res = await request(app)
       .get("/api/v1/posts")
       .set("Cookie", [`token=${token}`]);
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("success", true);
   });
-  it.skip("should create a post", async () => {
+  it("should create a post", async () => {
     const res = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
@@ -54,7 +54,7 @@ describe("post tests", () => {
     expect(res.body).toHaveProperty("success", true);
   });
 
-  it.skip("should update a post", async () => {
+  it("should update a post", async () => {
     const responseCreate = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
@@ -76,7 +76,7 @@ describe("post tests", () => {
     expect(responseUpdate.body).toHaveProperty("success", true);
   });
 
-  it.skip("should delete a post", async () => {
+  it("should delete a post", async () => {
     const responseCreate = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
