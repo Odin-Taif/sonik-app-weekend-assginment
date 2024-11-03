@@ -2,4 +2,4 @@ export * from "./getPosts";
 
 export * from "./creatPost";
 
-export * from "./getPost";
+export * from "./updatePost";
