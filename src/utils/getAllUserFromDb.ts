@@ -1,11 +1,5 @@
 import { readdir, readFile } from "fs/promises";
-export const getUsersFromDb = async () => {
-  const usersDir = process.env.usersDbDir || "src/db/users";
-  if (!process.env.usersDbDir) {
-    console.warn(
-      "Environment variable usersDbDir is not set. Using default path."
-    );
-  }
+export const getUsersFromDb = async (usersDir: string) => {
   const files = await readdir(usersDir);
   const usersPromises = await Promise.allSettled(
     files.map(async (file: any) => {

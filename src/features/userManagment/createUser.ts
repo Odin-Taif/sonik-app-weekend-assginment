@@ -15,7 +15,9 @@ export const createUser = async (req: Request, res: Response) => {
 
   try {
     const newUser = { id, name, email, hashedPassword };
-    await createNewUserInDb(newUser);
+
+    const usersDir = process.env.usersDbDir || "src/db/users";
+    await createNewUserInDb(newUser, usersDir);
 
     res
       .status(201)
