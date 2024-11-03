@@ -1,6 +1,6 @@
 // createToken.test.ts
 import { describe, it, expect } from "vitest";
-import { generateToken } from "../../utils";
+import { generateToken } from "../utils";
 
 describe("createToken", () => {
   it("should generate a valid token containing user id and email", async () => {
