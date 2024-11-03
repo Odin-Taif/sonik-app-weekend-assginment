@@ -11,7 +11,6 @@ export const createPost = async (req: Request, res: Response) => {
   }
   const id = uuidv4();
   const { post } = postValidated.data;
-  const postsDbDir = "./src/db/posts";
   const newPost = { id, post };
   try {
     await createPostInDb(newPost);
