@@ -32,7 +32,7 @@ describe("post tests", () => {
     expect(res.status).toBe(200);
     token = res.body.token;
   });
-  //  we first create a user => login the users => get the token => create post => fetch post
+  //  we first create a user => login the users => get the token => create post with token included in the req.cookies=> fetch post
 
   it("should create a post", async () => {
     console.log(token);
@@ -41,6 +41,15 @@ describe("post tests", () => {
       .set("Cookie", [`token=${token}`])
       .send(testPost);
     expect(res.status).toBe(201);
+    expect(res.body).toHaveProperty("success", true);
+  });
+
+  it("should fetch all posts", async () => {
+    console.log(token);
+    const res = await request(app)
+      .get("/api/v1/posts")
+      .set("Cookie", [`token=${token}`]);
+    expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("success", true);
   });
 });
