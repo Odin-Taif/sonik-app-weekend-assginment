@@ -8,6 +8,13 @@
       "when": 1730597224570,
       "tag": "0000_jazzy_khan",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1730624616303,
+      "tag": "0001_illegal_power_pack",
+      "breakpoints": true
     }
   ]
 }
