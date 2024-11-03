@@ -25,6 +25,5 @@ export const verifyLogin = async (
     next();
   } catch (error) {
     res.status(500).json({ success: false, msg: "Server Error" });
-    throw error;
   }
 };

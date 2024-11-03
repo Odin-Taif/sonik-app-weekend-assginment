@@ -31,6 +31,11 @@ describe("Create user tests", () => {
     server.close();
   });
 
+  // userRouter.post("/user", createUser);
+  // userRouter.post("/login", loginUser);
+  // userRouter.get("/users", getUsers);
+  // userRouter.get("/users/:id", getUser);
+
   it("create a user in local db", async () => {
     const response = await request(app)
       .post("/api/v1/user")
@@ -52,7 +57,6 @@ describe("Create user tests", () => {
 
   it("Get all users", async () => {
     const response = await request(app).get(requsetPath);
-
     // Assertions
     expect(response.status).toBe(200);
   });
@@ -73,24 +77,5 @@ describe("Create user tests", () => {
     const response1 = await request(app).get(`/api/v1/users/${user.id}`);
     // Assertions
     expect(response1.status).toBe(200);
-  });
-
-  it("log in a user | create a user ==> log in a user ==>", async () => {
-    const response = await request(app)
-      .post("/api/v1/user")
-      .send({
-        name: "Alice Johnson",
-        email: "alice.johnson@example.com",
-        password: "!fjasdfkjaAAfaidfo",
-      })
-      .expect(201);
-
-    const {
-      text,
-      headers: { location },
-    } = response;
-
-    const { user } = JSON.parse(text);
-    assert.equal(location, `/api/v1/users/${user.id}`);
   });
 });

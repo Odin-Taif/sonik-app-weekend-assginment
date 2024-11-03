@@ -1,18 +1,46 @@
 import request from "supertest";
 import { createApp } from "../app";
 
-describe("Create post tests", () => {
+describe("post tests", () => {
   const app = createApp();
 
-  describe("POST /api/v1/post", () => {
-    const testPost = {
-      content: "this s a test post",
-    };
-    // Test for signup | done
-    it("should create a post", async () => {
-      const res = await request(app).post("/api/v1/post").send(testPost);
-      expect(res.status).toBe(201); // Assuming 201 Created
-      expect(res.body).toHaveProperty("success", true);
+  // postRouter.post("/post", verifyLogin, createPost);
+  // postRouter.get("/posts", verifyLogin, getPosts);
+  // postRouter.patch("/posts/:id", verifyLogin, updatePost);
+  // postRouter.delete("/posts/:id", verifyLogin, deletePost);
+  // postRouter.get("/posts/:authorid", verifyLogin, getPostsByAuthor);
+
+  const testUser = {
+    name: "Test Johnson",
+    email: "testest@example.com",
+    password: "!fjasdfkjaAAfaidfo",
+  };
+  const testPost = {
+    content: "this is a test post",
+  };
+
+  beforeAll(async () => {
+    await request(app).post("/api/v1/user").send(testUser);
+  });
+
+  let token: string;
+  beforeEach(async () => {
+    const res = await request(app).post("/api/v1/login").send({
+      email: testUser.email,
+      password: testUser.password,
     });
+    expect(res.status).toBe(200);
+    token = res.body.token;
+  });
+  //  we first create a user => login the users => get the token => create post => fetch post
+
+  it("should create a post", async () => {
+    console.log(token);
+    const res = await request(app)
+      .post("/api/v1/post")
+      .set("Cookie", [`token=${token}`])
+      .send(testPost);
+    expect(res.status).toBe(201);
+    expect(res.body).toHaveProperty("success", true);
   });
 });
