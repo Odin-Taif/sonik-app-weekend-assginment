@@ -4,8 +4,10 @@ import { createApp } from "../app";
 describe("post tests", () => {
   const app = createApp();
 
-  // postRouter.post("/post", verifyLogin, createPost);
   // postRouter.get("/posts", verifyLogin, getPosts);
+
+  // postRouter.post("/post", verifyLogin, createPost);
+
   // postRouter.patch("/posts/:id", verifyLogin, updatePost);
   // postRouter.delete("/posts/:id", verifyLogin, deletePost);
   // postRouter.get("/posts/:authorid", verifyLogin, getPostsByAuthor);
@@ -34,8 +36,14 @@ describe("post tests", () => {
   });
   //  we first create a user => login the users => get the token => create post with token included in the req.cookies=> fetch post
 
+  it("should fetch all posts", async () => {
+    const res = await request(app)
+      .get("/api/v1/posts")
+      .set("Cookie", [`token=${token}`]);
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty("success", true);
+  });
   it("should create a post", async () => {
-    console.log(token);
     const res = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
@@ -44,12 +52,25 @@ describe("post tests", () => {
     expect(res.body).toHaveProperty("success", true);
   });
 
-  it("should fetch all posts", async () => {
-    console.log(token);
-    const res = await request(app)
-      .get("/api/v1/posts")
-      .set("Cookie", [`token=${token}`]);
-    expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty("success", true);
+  it("should update a post", async () => {
+    const responseCreate = await request(app)
+      .post("/api/v1/post")
+      .set("Cookie", [`token=${token}`])
+      .send(testPost);
+    expect(responseCreate.status).toBe(201);
+    expect(responseCreate.body).toHaveProperty("success", true);
+    console.log(responseCreate.body.post);
+    const {
+      post: { id },
+    } = responseCreate.body;
+    console.log(id);
+    const responseUpdate = await request(app)
+      .patch(`/api/v1/posts/:${id}`)
+      .set("Cookie", [`token=${token}`])
+      .send({
+        content: "updated post",
+      });
+    expect(responseUpdate.status).toBe(200);
+    expect(responseUpdate.body).toHaveProperty("success", true);
   });
 });

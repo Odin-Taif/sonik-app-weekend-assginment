@@ -10,9 +10,9 @@ export const getUser = async (req: Request, res: Response) => {
     }
     res
       .status(200)
-      .json({ status: true, msg: "user fetched successfully", user: user });
+      .json({ success: true, msg: "user fetched successfully", user: user });
   } catch (error) {
-    res.json({ status: false, msg: "something went wrong" });
+    res.json({ success: false, msg: "something went wrong" });
     throw error;
   }
 };
