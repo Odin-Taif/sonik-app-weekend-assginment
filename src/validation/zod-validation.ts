@@ -38,3 +38,7 @@ export const signinUserSchema = z.object({
 export const createPostSchema = z.object({
   post: postSchema,
 });
+
+export const updateDeletePostSchema = z.object({
+  id: idShecma,
+});
