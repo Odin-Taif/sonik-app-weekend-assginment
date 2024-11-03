@@ -1,1 +1,0 @@
-{"version":3,"file":"deletePostInDb.js","sourceRoot":"","sources":["../../../src/utils/deletePostInDb.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAAiC;AACjC,sCAAmC;AACnC,8CAA0C;AAEnC,MAAM,cAAc,GAAG,CAAO,MAAc,EAAE,EAAE;IACrD,MAAM,OAAE,CAAC,MAAM,CAAC,cAAK,CAAC,CAAC,KAAK,CAAC,IAAA,gBAAE,EAAC,cAAK,CAAC,EAAE,EAAE,MAAM,CAAC,CAAC,CAAC;AACrD,CAAC,CAAA,CAAC;AAFW,QAAA,cAAc,kBAEzB"}
