@@ -15,7 +15,8 @@ COPY . .
 
 # COPY .env /src/app/.env
 # # Copy Drizzle migration files (if necessary, adjust the path)
-COPY drizzle ./drizzle/
+COPY drizzle ./src/drizzle
+
 
 # # # Generate any Drizzle configuration (if needed)
 # RUN npx drizzle-kit generate 
