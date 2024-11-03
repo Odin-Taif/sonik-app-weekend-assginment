@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "start:tsx-dev": "tsx --watch src/index.ts",
     "start:nodemon-dev": "nodemon src/index.ts",
     "test": "vitest --run"
