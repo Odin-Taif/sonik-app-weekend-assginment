@@ -4,14 +4,17 @@ import { v4 as uuidv4 } from "uuid";
 import { createPostSchema } from "../../validation/zod-validation";
 
 export const createPost = async (req: Request, res: Response) => {
+  const authorId = (req as any).userId;
+  const data = req.body;
+  console.log(data);
   const postValidated = createPostSchema.safeParse(req.body);
   if (!postValidated.success) {
     res.status(400).json({ success: false, msg: "Input is invalid" });
     return;
   }
   const id = uuidv4();
-  const { post } = postValidated.data;
-  const newPost = { id, post };
+  const { content } = postValidated.data;
+  const newPost = { id, content, authorId };
   try {
     await createPostInDb(newPost);
     res

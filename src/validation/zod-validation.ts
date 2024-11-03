@@ -23,7 +23,7 @@ const passwordSchema = z
     "Your password must contain at least one special character!"
   );
 
-const postSchema = z.string().trim().min(1).max(400);
+const postSchema = z.string().trim().min(1).max(1000);
 
 export const createUserSchema = z.object({
   name: nameSchema,
@@ -36,7 +36,7 @@ export const signinUserSchema = z.object({
 });
 
 export const createPostSchema = z.object({
-  post: postSchema,
+  content: postSchema,
 });
 
 export const updateDeletePostSchema = z.object({

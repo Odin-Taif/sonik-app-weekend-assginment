@@ -5,11 +5,11 @@ import { eq } from "drizzle-orm";
 
 export const updatePost = async (req: Request, res: Response) => {
   const postId = req.params.id;
-  const newPost = req.body.post;
+  const postContent = req.body.post;
   try {
     const post = await db
       .update(posts)
-      .set({ post: newPost })
+      .set({ content: postContent })
       .where(eq(posts.id, postId));
     res
       .status(200)

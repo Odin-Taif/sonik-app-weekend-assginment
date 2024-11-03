@@ -1,6 +1,14 @@
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  varchar,
+} from "drizzle-orm/pg-core";
 
 export const posts = pgTable("posts", {
   id: varchar("id").primaryKey(),
-  post: text("post"),
+  content: text("post"),
+  authorId: varchar("authorId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
 });

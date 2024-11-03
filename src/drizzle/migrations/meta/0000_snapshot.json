@@ -1,5 +1,5 @@
 {
-  "id": "7e4e1060-e43b-40b2-a3d8-cfbca4361787",
+  "id": "ff561b0a-49d0-4b8f-928a-727749ec2680",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -10,7 +10,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "varchar",
           "primaryKey": true,
           "notNull": true
         },
@@ -19,6 +19,19 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "authorId": {
+          "name": "authorId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},

@@ -15,11 +15,13 @@ export const verifyLogin = async (
   }
   try {
     const decodedToken = jwt.verify(token, process.env.SECRET_KEY!);
-    if (!decodedToken)
+    if (!decodedToken) {
       res
-        .status(401)
+        .status(403)
         .json({ success: false, message: "Invalid Token provied" });
-    (req as any).userId = (decodedToken as any).userId;
+    }
+
+    (req as any).userId = (decodedToken as { userId: string }).userId;
     next();
   } catch (error) {
     res.status(500).json({ success: false, msg: "Server Error" });
