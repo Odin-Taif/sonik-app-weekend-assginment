@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { signinUserSchema } from "../../validation/zod-validation";
-import { generateTokenAndSetCookie, getUserByEmail } from "../../utils";
+import { generateToken, getUserByEmail, setTokenCookie } from "../../utils";
 import { compareSync } from "bcryptjs";
 
 export const loginUser = async (req: Request, res: Response) => {
@@ -25,7 +25,10 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!validPassword) {
       res.status(400).json({ success: false, msg: "Incorrect password!" });
     }
-    const token = await generateTokenAndSetCookie(res, existingUser.id);
+    const SECRET_KEY = process.env.SECRET_KEY!;
+    const token = await generateToken(existingUser.id, SECRET_KEY);
+    setTokenCookie(res, token);
+
     res.status(200).json({
       success: true,
       msg: "User logged in successfully",

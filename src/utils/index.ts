@@ -8,6 +8,7 @@ export * from "./getPostsByUserFromDb";
 export * from "./getUserById";
 export * from "./getUserByEmail";
 
-export * from "./generateTokenAndSetCookie";
+export * from "./generateToken";
+export * from "./setTokenCookies";
 
 export * from "./deletePostInDb";

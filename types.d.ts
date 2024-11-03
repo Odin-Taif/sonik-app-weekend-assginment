@@ -5,8 +5,13 @@ export type User = {
   hashedPassword: string;
 };
 
-type Post = {
+export type Post = {
   id: string;
   content: string;
   authorId: string;
+};
+
+export type SetTokenCookieOptions = {
+  token: string;
+  res: Response;
 };
