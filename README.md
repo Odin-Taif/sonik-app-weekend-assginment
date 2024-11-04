@@ -4,7 +4,7 @@ This README provides an overview of the API endpoints available in this applicat
 
 ## Features
 
-- **User Authentication**: Secure login and session management.
+
 - **Post Management**: Create, read, update, and delete posts.
 - **User Management**: Create and retrieve user profiles.
 
@@ -40,8 +40,8 @@ Follow these steps to set up the project locally:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://your-repository-url.git
-   cd your-repository-directory
+   git clone git@github.com:Odin-Taif/sonik-app-weekend-assginment.git
+
    ```
 2. **Install Dependencies**:
    ```bash
@@ -188,12 +188,6 @@ You can access the Postman collection for this project [here](https://spicy5.pos
 
 ---
 
-## Presentation Video Requirements
-
-- Ensure your video covers the following:
-  - Overview of the project features.
-  - Demonstration of key API endpoints.
-  - Explanation of how to authenticate and make requests.
 
 ## Notes
 
