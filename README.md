@@ -17,6 +17,7 @@ Here is the blueprint for the project:
 
 - [Installation](#installation)
 - [Usage](#usage)
+- [Postman Collection](#PostmanCollection)
 - [Authentication](#authentication)
 - [Endpoints](#endpoints)
   - [Posts](#posts)
@@ -51,6 +52,10 @@ To interact with the API, you can use tools like Postman, Insomnia, or any HTTP 
 ### Authentication
 
 Some endpoints require a valid user session. Use the `/login` endpoint to authenticate and obtain a session token, which will be required for protected endpoints.
+
+## Postman Collection
+
+You can access the Postman collection for this project [here](https://spicy5.postman.co/workspace/spicy-Workspace~e3a1d0b4-8e1e-4416-8486-e1dca30dd627/collection/19840737-75070e22-8b6b-4a48-b9a3-968fd043aefd?action=share&creator=19840737).
 
 ---
 
