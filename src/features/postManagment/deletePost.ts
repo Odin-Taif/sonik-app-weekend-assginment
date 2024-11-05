@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { deletePostInDb } from "../../utils";
-import { updateDeletePostSchema } from "../../validation/zod-validation";
 
 export const deletePost = async (req: Request, res: Response) => {
   const postId = req.params.id;

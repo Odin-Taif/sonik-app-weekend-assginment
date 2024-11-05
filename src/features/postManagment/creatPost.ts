@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { createPostInDb } from "../../utils";
 import { v4 as uuidv4 } from "uuid";
 import { createPostSchema } from "../../validation/zod-validation";
+import { createPostInDb } from "./postDb";
 
 export const createPost = async (req: Request, res: Response) => {
   const authorId = (req as any).userId;

@@ -7,3 +7,6 @@ export * from "./updatePost";
 export * from "./deletePost";
 
 export * from "./getPostsByAuthor";
+
+//-=-=--=-=-=-=-=-=-=-===
+export * from "./postFeature";

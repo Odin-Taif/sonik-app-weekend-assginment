@@ -1,17 +1,22 @@
-import express from "express";
+import express, { Router } from "express";
 import cookieParser from "cookie-parser";
-import { createPostRouter } from "./features/postManagment/postRouter";
+import { createPostFeature } from "./features/postManagment/postFeature";
 
 export function createApp() {
   const app = express();
-  app.use(express.json());
   app.use(cookieParser());
   app.use(express.json());
   app.get("/status", (req, res) => {
     res.json({ status: "ready" });
   });
-  // app.use("/api/v1", userRouter);
-  app.use("/api/v1", createPostRouter.router);
+  const postFeature = createPostFeature();
 
+  const v1Router = Router();
+  v1Router.use("/", postFeature.router);
+
+  const apiRouter = Router();
+  apiRouter.use("/api/v1", v1Router);
+
+  app.use("/", apiRouter);
   return app;
 }
