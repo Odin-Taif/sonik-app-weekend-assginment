@@ -16,7 +16,7 @@ const getPostsFromDb = async () => {
 };
 
 const createPostInDb = async ({ id, content, authorId }: Post) => {
-  await db
+  return await db
     .insert(posts)
     .values({
       id,
