@@ -1,6 +1,9 @@
-import { createPostDataSchema } from "../../validation/zod-validation";
+import {
+  createPostDataSchema,
+  updatePostDataSchema,
+} from "../../validation/zod-validation";
 import { Db } from "./postDb";
-import { PostData } from "./types";
+import { PostData, UpdatePostData } from "./types";
 import { v4 as uuidv4 } from "uuid";
 
 export function PostServices(db: Db) {
@@ -10,7 +13,6 @@ export function PostServices(db: Db) {
 
   async function createPost(postData: PostData) {
     const postValidated = createPostDataSchema.safeParse(postData);
-
     if (!postValidated.success) {
       return { success: false, msg: "Input is invalid" };
     }
@@ -20,9 +22,19 @@ export function PostServices(db: Db) {
 
     return db.createPostInDb(post);
   }
+
+  async function updatePost(updatedPostData: UpdatePostData) {
+    const postValidated = updatePostDataSchema.safeParse(updatedPostData);
+    if (!postValidated.success) {
+      return { success: false, msg: "Input is invalid" };
+    }
+    const { postId, content } = postValidated.data;
+    return db.updatePostInDb(postId, content);
+  }
   return {
     getPosts,
     createPost,
+    updatePost,
   };
 }
 

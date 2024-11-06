@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { db } from "../../drizzle/db";
 import { posts } from "../../drizzle/schema";
-import { Post } from "./types";
+import { Post, UpdatePostData } from "./types";
 
 const getPostsFromDb = async () => {
   const postsFromDb = await db
@@ -23,6 +23,14 @@ const createPostInDb = async ({ id, content, authorId }: Post) => {
       content,
       authorId,
     })
+    .returning();
+};
+
+export const updatePostInDb = async (postId: string, content: string) => {
+  return await db
+    .update(posts)
+    .set({ content: content })
+    .where(eq(posts.id, postId))
     .returning();
 };
 
@@ -49,6 +57,7 @@ export function CreatePostDb() {
     getPostsByUserFromDb,
     deletePostInDb,
     createPostInDb,
+    updatePostInDb,
   };
 }
 

@@ -24,7 +24,7 @@ const passwordSchema = z
   );
 
 const postContentSchema = z.string().trim().min(1).max(1000);
-const authorIdSchema = z.string().trim().min(1).max(1000);
+const authorIdSchema = z.string().trim().min(1).max(200);
 
 export const createUserSchema = z.object({
   name: nameSchema,
@@ -39,6 +39,11 @@ export const signinUserSchema = z.object({
 export const createPostDataSchema = z.object({
   content: postContentSchema,
   authorId: authorIdSchema,
+});
+
+export const updatePostDataSchema = z.object({
+  content: postContentSchema,
+  postId: idShecma,
 });
 
 export const updateDeletePostSchema = z.object({
