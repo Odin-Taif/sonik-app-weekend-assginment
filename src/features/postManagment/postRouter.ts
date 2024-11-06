@@ -53,7 +53,21 @@ export function createPostRouter(service: Service) {
       throw error;
     }
   });
-  // router.get("/posts/:authorid", verifyLogin, getPostsByAuthor);
+
+  router.get("/posts/:authorid", async (req, res) => {
+    const userId = req.params.authorid;
+    try {
+      const posts = await service.getPostsByUserFromDb(userId);
+      res.json({
+        success: true,
+        msg: "User's posts fetched successfully",
+        posts: posts,
+      });
+    } catch (error) {
+      res.json({ success: false, msg: { error } });
+      throw error;
+    }
+  });
 
   return router;
 }

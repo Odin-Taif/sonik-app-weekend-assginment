@@ -1,12 +1,4 @@
-export * from "./getPosts";
-
-export * from "./creatPost";
-
-export * from "./updatePost";
-
-export * from "./deletePost";
-
-export * from "./getPostsByAuthor";
-
-//-=-=--=-=-=-=-=-=-=-===
+//-=-=--=-=-=-=-=-=-=-
 export * from "./postFeature";
+export * from "./postRouter";
+export * from "./postServices";

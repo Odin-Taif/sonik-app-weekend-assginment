@@ -39,7 +39,7 @@ const deletePostInDb = async (postId: string) => {
 };
 
 const getPostsByUserFromDb = async (userId: string) => {
-  const postsFromDb = await db
+  return await db
     .select({
       id: posts.id,
       content: posts.content,
@@ -48,7 +48,6 @@ const getPostsByUserFromDb = async (userId: string) => {
     })
     .from(posts)
     .where(eq(posts.authorId, userId));
-  return postsFromDb;
 };
 
 export function CreatePostDb() {

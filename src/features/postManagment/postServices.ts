@@ -11,6 +11,10 @@ export function PostServices(db: Db) {
     return db.getPostsFromDb();
   }
 
+  async function getPostsByUserFromDb(userId: string) {
+    return db.getPostsByUserFromDb(userId);
+  }
+
   async function createPost(postData: PostData) {
     const postValidated = createPostDataSchema.safeParse(postData);
     if (!postValidated.success) {
@@ -35,11 +39,13 @@ export function PostServices(db: Db) {
   async function deletePost(postId: string) {
     return db.deletePostInDb(postId);
   }
+
   return {
     getPosts,
     createPost,
     updatePost,
     deletePost,
+    getPostsByUserFromDb,
   };
 }
 

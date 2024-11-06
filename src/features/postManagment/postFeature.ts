@@ -6,7 +6,6 @@ export function createPostFeature() {
   const db = CreatePostDb();
   const service = PostServices(db);
   const router = createPostRouter(service);
-
   return {
     router,
     service,
