@@ -1,6 +1,7 @@
 import express from "express";
 
 import { Service } from "./postServices";
+import { verifyLogin } from "../../middleware";
 
 export function createPostRouter(service: Service) {
   const router: express.Router = express.Router();
@@ -9,7 +10,7 @@ export function createPostRouter(service: Service) {
     res.json(await service.getPosts());
   });
 
-  router.post("/post", async (req, res) => {
+  router.post("/post", verifyLogin, async (req, res) => {
     try {
       const content = req.body.content as string;
       // const authorId = (req as any).userId;
@@ -27,7 +28,7 @@ export function createPostRouter(service: Service) {
     }
   });
 
-  router.patch("/posts/:id", async (req, res) => {
+  router.patch("/posts/:id", verifyLogin, async (req, res) => {
     try {
       const content = req.body.content;
       const postId = req.params.id;
@@ -43,7 +44,7 @@ export function createPostRouter(service: Service) {
     }
   });
 
-  router.delete("/posts/:id", async (req, res) => {
+  router.delete("/posts/:id", verifyLogin, async (req, res) => {
     try {
       const postId = req.params.id;
       await service.deletePost(postId);

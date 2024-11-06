@@ -1,5 +1,4 @@
 import { z } from "zod";
-
 const idShecma = z.any();
 const nameSchema = z
   .string()
