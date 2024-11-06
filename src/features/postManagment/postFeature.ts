@@ -1,10 +1,10 @@
 import { CreatePostDb } from "./postDb";
 import { createPostRouter } from "./postRouter";
-import { createPostServices } from "./postServices";
+import { PostServices } from "./postServices";
 
 export function createPostFeature() {
   const db = CreatePostDb();
-  const service = createPostServices(db);
+  const service = PostServices(db);
   const router = createPostRouter(service);
 
   return {

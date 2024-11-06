@@ -3,3 +3,8 @@ export type Post = {
   content: string;
   authorId: string;
 };
+
+export type PostData = {
+  content: string;
+  authorId: string;
+};
