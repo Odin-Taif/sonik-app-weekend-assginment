@@ -42,7 +42,17 @@ export function createPostRouter(service: Service) {
       res.status(500).json({ success: false, msg: "Internal server error" });
     }
   });
-  // router.delete("/posts/:id", verifyLogin, deletePost);
+
+  router.delete("/posts/:id", async (req, res) => {
+    try {
+      const postId = req.params.id;
+      await service.deletePost(postId);
+      res.status(204).send();
+    } catch (error) {
+      res.json({ success: false, msg: "Resource not found", error: error });
+      throw error;
+    }
+  });
   // router.get("/posts/:authorid", verifyLogin, getPostsByAuthor);
 
   return router;

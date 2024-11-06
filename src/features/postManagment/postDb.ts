@@ -35,7 +35,7 @@ export const updatePostInDb = async (postId: string, content: string) => {
 };
 
 const deletePostInDb = async (postId: string) => {
-  await db.delete(posts).where(eq(posts.id, postId));
+  return await db.delete(posts).where(eq(posts.id, postId)).returning();
 };
 
 const getPostsByUserFromDb = async (userId: string) => {

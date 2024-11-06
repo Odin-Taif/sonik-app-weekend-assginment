@@ -31,10 +31,15 @@ export function PostServices(db: Db) {
     const { postId, content } = postValidated.data;
     return db.updatePostInDb(postId, content);
   }
+
+  async function deletePost(postId: string) {
+    return db.deletePostInDb(postId);
+  }
   return {
     getPosts,
     createPost,
     updatePost,
+    deletePost,
   };
 }
 
