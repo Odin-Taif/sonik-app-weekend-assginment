@@ -5,7 +5,7 @@ import { createNewUserInDb } from "../../utils";
 import { createUserSchema } from "../../validation/zod-validation";
 
 export const createUser = async (req: Request, res: Response) => {
-  const userValidated = createUserSchema.safeParse(req.body);
+  const userValidated = createUserSchema.safeParse(user);
   if (!userValidated.success) {
     res.status(400).json({ success: false, message: "Input not valid!" });
   }
@@ -15,7 +15,6 @@ export const createUser = async (req: Request, res: Response) => {
 
   try {
     const newUser = { id, name, email, hashedPassword };
-
     const usersDir = process.env.usersDbDir || "src/db/users";
     await createNewUserInDb(newUser, usersDir);
 

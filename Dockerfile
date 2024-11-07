@@ -13,14 +13,6 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# COPY .env /src/app/.env
-# # Copy Drizzle migration files (if necessary, adjust the path)
-# COPY drizzle /src/drizzle
-
-
-# # # Generate any Drizzle configuration (if needed)
-# RUN npx drizzle-kit generate 
-# Build the TypeScript code
 RUN npm run build
 
 # Expose the port your app will run on
