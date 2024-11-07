@@ -1,4 +1,5 @@
-import { readdir, readFile } from "fs/promises";
+import { readdir, readFile, writeFile } from "fs/promises";
+import { User } from "../../../types";
 
 const getUsersFromDb = async () => {
   const usersDir = process.env.usersDbDir || "src/db/users";
@@ -16,9 +17,19 @@ const getUsersFromDb = async () => {
   return users;
 };
 
+export const createUserInDb = async (user: User) => {
+  const { id, name, email, hashedPassword } = user;
+  const usersDir = process.env.usersDbDir || "src/db/users";
+  await writeFile(
+    `${usersDir}/${id}`,
+    JSON.stringify({ id, name, email, hashedPassword })
+  );
+};
+
 export function CreateUserDb() {
   return {
     getUsersFromDb,
+    createUserInDb,
   };
 }
 
