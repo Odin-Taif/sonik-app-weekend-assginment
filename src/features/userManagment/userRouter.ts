@@ -7,17 +7,11 @@ export function createUserRouter(service: Service) {
 
   router.get("/users", async (req, res) => {
     try {
-      const users = await service.getUsers();
-      res.json({
-        success: true,
-        msg: "Users fetched successfully",
-        users: users,
-      });
+      res.json(await service.getUsers());
     } catch (error) {
       res.json({ success: false, msg: { error } });
       throw error;
     }
-    res.status(200);
   });
 
   router.post("/user", async (req, res) => {
@@ -43,7 +37,6 @@ export function createUserRouter(service: Service) {
       res.status(500).json({ success: false, msg: "Internal Server Error" });
     }
   });
-  // router.get("/users/:id", getUser);
 
   return router;
 }

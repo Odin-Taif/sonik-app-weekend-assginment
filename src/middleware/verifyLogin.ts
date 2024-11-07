@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 export const verifyLogin = async (
   req: Request,
@@ -7,23 +7,36 @@ export const verifyLogin = async (
   next: NextFunction
 ) => {
   const token = req.cookies.token;
+  console.log("Token:", token);
+
   if (!token) {
     res.status(401).json({
       success: false,
       msg: "Unauthorized user! Please log in first!",
     });
   }
+
   try {
-    const decodedToken = jwt.verify(token, process.env.SECRET_KEY!);
+    const secretKey = process.env.SECRET_KEY;
+    console.log("Secret Key:", secretKey);
+
+    if (!secretKey) {
+      throw new Error("SECRET_KEY is not defined in environment variables.");
+    }
+
+    const decodedToken = jwt.verify(token, secretKey);
+    console.log("Decoded Token:", decodedToken);
+
     if (!decodedToken) {
       res
         .status(403)
-        .json({ success: false, message: "Invalid Token provied" });
+        .json({ success: false, message: "Invalid Token provided" });
     }
 
-    (req as any).userId = (decodedToken as { userId: string }).userId;
+    req.body.userId = (decodedToken as jwt.JwtPayload).userId;
     next();
   } catch (error) {
+    console.error("Error verifying token:", error);
     res.status(500).json({ success: false, msg: "Server Error" });
   }
 };

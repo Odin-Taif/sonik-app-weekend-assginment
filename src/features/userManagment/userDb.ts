@@ -2,7 +2,6 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { User } from "../../../types";
 import { compareSync } from "bcryptjs";
 import { generateToken } from "../../utils/generateToken";
-import { setTokenCookie } from "../../utils";
 
 const getUsersFromDb = async () => {
   const usersDir = process.env.usersDbDir || "src/db/users";
@@ -16,7 +15,6 @@ const getUsersFromDb = async () => {
   const users = usersPromises
     .filter((result) => result.status === "fulfilled")
     .map((result) => (result as PromiseFulfilledResult<any>).value);
-
   return users;
 };
 
@@ -51,6 +49,7 @@ export const loginInDb = async (user: { email: string; password: string }) => {
     token: token,
   };
 };
+
 export function CreateUserDb() {
   return {
     getUsersFromDb,

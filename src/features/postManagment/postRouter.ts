@@ -1,7 +1,7 @@
 import express from "express";
 
 import { Service } from "./postServices";
-import { verifyLogin } from "../../middleware";
+import { verifyLogin } from "../../middleware/verifyLogin";
 
 export function createPostRouter(service: Service) {
   const router: express.Router = express.Router();
@@ -12,9 +12,10 @@ export function createPostRouter(service: Service) {
 
   router.post("/post", verifyLogin, async (req, res) => {
     try {
-      const content = req.body.content as string;
-      // const authorId = (req as any).userId;
-      const authorId = "fasdfasdfadfasdfasdfasdfa"; //placeholder
+      const content = req.body.content;
+      const userId = req.body.userId;
+      console.log(userId);
+      const authorId = "fasdfasdfadfasdfdsfasdfasdfasdfa"; //placeholder
       const postData = { content, authorId };
 
       const post = await service.createPost(postData);
