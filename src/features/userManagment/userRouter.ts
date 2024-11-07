@@ -34,7 +34,15 @@ export function createUserRouter(service: Service) {
       throw error;
     }
   });
-  // router.post("/login", loginUser);
+
+  router.post("/login", async (req, res) => {
+    try {
+      const user = req.body;
+      res.status(200).json(await service.loginUser(user));
+    } catch (error) {
+      res.status(500).json({ success: false, msg: "Internal Server Error" });
+    }
+  });
   // router.get("/users/:id", getUser);
 
   return router;

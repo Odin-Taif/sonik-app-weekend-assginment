@@ -1,5 +1,8 @@
 import { User } from "../../../types";
-import { createUserSchema } from "../../validation/zod-validation";
+import {
+  createUserSchema,
+  signinUserSchema,
+} from "../../validation/zod-validation";
 import { Db } from "./userDb";
 import { v4 as uuidv4 } from "uuid";
 import { hashSync } from "bcryptjs";
@@ -20,9 +23,22 @@ export function UserServices(db: Db) {
     return db.createUserInDb({ ...userValidated.data, id, hashedPassword });
   }
 
+  async function loginUser(user: { email: string; password: string }) {
+    const userValidated = signinUserSchema.safeParse(user);
+    if (!userValidated.success) {
+      return {
+        success: false,
+        msg: "Please check your Email or Password!",
+      };
+    }
+    const { email, password } = userValidated.data!;
+    return db.loginInDb({ email, password });
+  }
+
   return {
     getUsers,
     createUser,
+    loginUser,
   };
 }
 

@@ -1,5 +1,8 @@
 import { readdir, readFile, writeFile } from "fs/promises";
 import { User } from "../../../types";
+import { compareSync } from "bcryptjs";
+import { generateToken } from "../../utils/generateToken";
+import { setTokenCookie } from "../../utils";
 
 const getUsersFromDb = async () => {
   const usersDir = process.env.usersDbDir || "src/db/users";
@@ -26,10 +29,33 @@ export const createUserInDb = async (user: User) => {
   );
 };
 
+export const loginInDb = async (user: { email: string; password: string }) => {
+  const users = await getUsersFromDb();
+  const existingUser = users.find((el) => el.email === user.email);
+  if (!existingUser) {
+    return {
+      success: false,
+      msg: "User does not exist!",
+    };
+  }
+  const validPassword = compareSync(user.password, existingUser.hashedPassword);
+  if (!validPassword) {
+    return { success: false, msg: "Incorrect password!" };
+  }
+  const SECRET_KEY = process.env.SECRET_KEY!;
+  const token = await generateToken(existingUser.id, SECRET_KEY);
+  return {
+    success: true,
+    msg: "User logged in successfully",
+    user: existingUser,
+    token: token,
+  };
+};
 export function CreateUserDb() {
   return {
     getUsersFromDb,
     createUserInDb,
+    loginInDb,
   };
 }
 
