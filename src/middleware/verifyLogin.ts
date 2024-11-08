@@ -7,32 +7,23 @@ export const verifyLogin = async (
   next: NextFunction
 ) => {
   const token = req.cookies.token;
-  console.log("Token:", token);
-
   if (!token) {
     res.status(401).json({
       success: false,
       msg: "Unauthorized user! Please log in first!",
     });
   }
-
   try {
     const secretKey = process.env.SECRET_KEY;
-    console.log("Secret Key:", secretKey);
-
     if (!secretKey) {
       throw new Error("SECRET_KEY is not defined in environment variables.");
     }
-
     const decodedToken = jwt.verify(token, secretKey);
-    console.log("Decoded Token:", decodedToken);
-
     if (!decodedToken) {
       res
         .status(403)
         .json({ success: false, message: "Invalid Token provided" });
     }
-
     req.body.userId = (decodedToken as jwt.JwtPayload).userId;
     next();
   } catch (error) {
