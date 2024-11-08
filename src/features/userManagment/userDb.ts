@@ -2,6 +2,7 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { User } from "../../../types";
 import { compareSync } from "bcryptjs";
 import { generateToken } from "../../utils/generateToken";
+import { setTokenCookie } from "../../utils/setTokenCookies";
 
 const getUsersFromDb = async () => {
   const usersDir = process.env.usersDbDir || "src/db/users";
