@@ -15,22 +15,23 @@ export function createUserRouter(service: Service) {
       throw error;
     }
   });
-
   router.post("/user", async (req, res) => {
     try {
       const id = uuidv4();
-      const user = req.body;
-      await service.createUser(user);
+      const data = req.body;
+      const userId = await service.createUser(data);
+
       res.status(201).header("location", `/api/v1/users/${id}`).json({
         success: true,
         msg: "User created successfully",
+        userId: userId,
       });
     } catch (error) {
       res.json({ success: false, msg: "User is invalid", error: error });
       throw error;
     }
   });
-  router.post("/login", verifyLogin, async (req, res) => {
+  router.post("/login", async (req, res) => {
     try {
       const data = req.body;
       const user = await service.loginUser(data);

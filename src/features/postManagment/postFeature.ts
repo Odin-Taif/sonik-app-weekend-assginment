@@ -1,4 +1,4 @@
-import { CreatePostDb } from "./postDb";
+import { CreatePostDb } from "./postRepositroy";
 import { createPostRouter } from "./postRouter";
 import { PostServices } from "./postServices";
 

@@ -2,7 +2,7 @@ import {
   createPostDataSchema,
   updatePostDataSchema,
 } from "../../validation/zod-validation";
-import { Db } from "./postDb";
+import { Db } from "./postRepositroy";
 import { PostData, UpdatePostData } from "./types";
 import { v4 as uuidv4 } from "uuid";
 

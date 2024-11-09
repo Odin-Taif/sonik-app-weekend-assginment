@@ -26,6 +26,7 @@ export const createUserInDb = async (user: User) => {
     `${usersDir}/${id}`,
     JSON.stringify({ id, name, email, hashedPassword })
   );
+  return id;
 };
 
 export const loginInDb = async (user: { email: string; password: string }) => {
