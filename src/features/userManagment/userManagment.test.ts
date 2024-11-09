@@ -3,7 +3,7 @@ import http from "http";
 import { readdir, unlink } from "fs";
 import { join } from "path";
 import { createApp } from "../../app";
-const directory = `src/db/users`;
+const directory = "src/features/userManagment/db/users";
 
 describe("Create user tests", () => {
   let server: http.Server;

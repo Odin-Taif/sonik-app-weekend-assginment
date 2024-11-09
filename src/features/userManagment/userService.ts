@@ -3,7 +3,7 @@ import {
   createUserSchema,
   signinUserSchema,
 } from "../../validation/zod-validation";
-import { Db } from "./userDb";
+import { Db } from "./userRepositroy";
 import { v4 as uuidv4 } from "uuid";
 import { hashSync } from "bcryptjs";
 

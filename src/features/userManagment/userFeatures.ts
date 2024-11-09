@@ -1,4 +1,4 @@
-import { CreateUserDb } from "./userDb";
+import { CreateUserDb } from "./userRepositroy";
 import { createUserRouter } from "./userRouter";
 import { UserServices } from "./userService";
 

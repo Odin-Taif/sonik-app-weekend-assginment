@@ -2,7 +2,6 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import { User } from "../../../types";
 import { compareSync } from "bcryptjs";
 import { generateToken } from "../../utils/generateToken";
-import { setTokenCookie } from "../../utils/setTokenCookies";
 
 const getUsersFromDb = async () => {
   const usersDir = process.env.usersDbDir || "src/db/users";
@@ -21,7 +20,8 @@ const getUsersFromDb = async () => {
 
 export const createUserInDb = async (user: User) => {
   const { id, name, email, hashedPassword } = user;
-  const usersDir = process.env.usersDbDir || "src/db/users";
+  const usersDir =
+    process.env.usersDbDir || "src/features/userManagment/db/users";
   await writeFile(
     `${usersDir}/${id}`,
     JSON.stringify({ id, name, email, hashedPassword })
