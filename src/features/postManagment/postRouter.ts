@@ -1,5 +1,4 @@
 import express from "express";
-
 import { Service } from "./postServices";
 import { verifyLogin } from "../../middleware/verifyLogin";
 
