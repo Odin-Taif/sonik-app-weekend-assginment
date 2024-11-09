@@ -13,9 +13,7 @@ export function createPostRouter(service: Service) {
   router.post("/post", verifyLogin, async (req, res) => {
     try {
       const content = req.body.content;
-      const userId = req.body.userId;
-      console.log(userId);
-      const authorId = "fasdfasdfadfasdfdsfasdfasdfasdfa"; //placeholder
+      const authorId = req.body.userId;
       const postData = { content, authorId };
 
       const post = await service.createPost(postData);

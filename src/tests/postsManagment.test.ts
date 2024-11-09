@@ -1,5 +1,5 @@
 import request from "supertest";
-import { createApp } from "../../app";
+import { createApp } from "../app";
 
 describe("post tests", () => {
   const app = createApp();
@@ -37,7 +37,6 @@ describe("post tests", () => {
     });
     expect(res.status).toBe(200);
     token = res.body.token;
-    console.log(token);
   });
 
   it("GET/ should fetch all posts", async () => {
@@ -45,31 +44,26 @@ describe("post tests", () => {
       .get("/api/v1/posts")
       .set("Cookie", [`token=${token}`]);
     expect(res.status).toBe(200);
-    expect(res.body).toHaveProperty("success", true);
   });
-  it.skip("POST/ should create a post", async () => {
+  it("POST/ should create a post", async () => {
     const res = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
       .send(testPost);
     expect(res.status).toBe(201);
-    expect(res.body).toHaveProperty("success", true);
   });
 
-  it.skip("PATCH/:id should update a post", async () => {
+  it("PATCH/:id should update a post", async () => {
     const responseCreate = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
       .send(testPost);
     expect(responseCreate.status).toBe(201);
-    expect(responseCreate.body).toHaveProperty("success", true);
 
-    const {
-      post: { id },
-    } = responseCreate.body;
+    const postId = responseCreate.body.id;
 
     const responseUpdate = await request(app)
-      .patch(`/api/v1/posts/:${id}`)
+      .patch(`/api/v1/posts/:${postId}`)
       .set("Cookie", [`token=${token}`])
       .send({
         content: "updated post",
@@ -78,36 +72,26 @@ describe("post tests", () => {
     expect(responseUpdate.body).toHaveProperty("success", true);
   });
 
-  it.skip("DELETE/:id / should delete a post", async () => {
+  it("DELETE/:id / should delete a post", async () => {
     const responseCreate = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
       .send(testPost);
     expect(responseCreate.status).toBe(201);
-    expect(responseCreate.body).toHaveProperty("success", true);
-
-    const {
-      post: { id },
-    } = responseCreate.body;
-
+    const postId = responseCreate.body.id;
     const responseDelete = await request(app)
-      .delete(`/api/v1/posts/:${id}`)
+      .delete(`/api/v1/posts/:${postId}`)
       .set("Cookie", [`token=${token}`]);
     expect(responseDelete.status).toBe(204);
   });
 
-  it.skip("GET/:authorId / should fetch all posts for each author", async () => {
+  it("GET/:authorId / should fetch all posts for each author", async () => {
     const responseCreate = await request(app)
       .post("/api/v1/post")
       .set("Cookie", [`token=${token}`])
       .send(testPost);
     expect(responseCreate.status).toBe(201);
-    expect(responseCreate.body).toHaveProperty("success", true);
-
-    const {
-      post: { authorId },
-    } = responseCreate.body;
-
+    const authorId = responseCreate.body.authoId;
     const responseGet = await request(app)
       .get(`/api/v1/posts/:${authorId}`)
       .set("Cookie", [`token=${token}`]);

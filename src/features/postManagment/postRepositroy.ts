@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
-import { db } from "../../drizzle/db";
-import { posts } from "../../drizzle/schema";
+import { db } from "./drizzle/db";
+import { posts } from "./drizzle/schema";
 import { Post } from "./types";
 
 const getPostsFromDb = async () => {

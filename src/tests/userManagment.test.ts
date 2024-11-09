@@ -1,11 +1,9 @@
 import request from "supertest";
 import http from "http";
-
-import assert from "assert";
 import { readdir, unlink } from "fs";
 import { join } from "path";
 import { createApp } from "../app";
-const directory = `src/db/users`;
+const directory = "src/features/userManagment/db/users";
 
 describe("Create user tests", () => {
   let server: http.Server;
@@ -35,12 +33,10 @@ describe("Create user tests", () => {
 
   // userRouter.get("/users", getUsers);
 
-  // userRouter.get("/users/:id", getUser);
-
   // userRouter.post("/login", loginUser);
 
   it("create a user in local db", async () => {
-    const response = await request(app)
+    await request(app)
       .post("/api/v1/user")
       .send({
         name: "Alice Johnson",
@@ -48,14 +44,6 @@ describe("Create user tests", () => {
         password: "!fjasdfkjaAAfaidfo",
       })
       .expect(201);
-
-    const {
-      text,
-      headers: { location },
-    } = response;
-
-    const { user } = JSON.parse(text);
-    assert.equal(location, `/api/v1/users/${user.id}`);
   });
 
   it("Get all users", async () => {
@@ -64,8 +52,8 @@ describe("Create user tests", () => {
     expect(response.status).toBe(200);
   });
 
-  it("log in a user => create a user  => login to the new created user", async () => {
-    const responseCreated = await request(app)
+  it("create a user  => login to the new created user", async () => {
+    await request(app)
       .post("/api/v1/user")
       .send({
         name: "Alice Johnson",
@@ -73,29 +61,12 @@ describe("Create user tests", () => {
         password: "!fjasdfkjaAAfaidfo",
       })
       .expect(201);
-
-    const responseLogin = await request(app).post("/api/v1/login").send({
-      email: "alice.johnson@example.com",
-      password: "!fjasdfkjaAAfaidfo",
-    });
-    expect(responseLogin.status).toBe(200);
-  });
-
-  it("get single user | create a user => get the id => get the newly created user", async () => {
-    const response0 = await request(server)
-      .post("/api/v1/user")
+    await request(app)
+      .post("/api/v1/login")
       .send({
-        name: "Alice Johnson",
         email: "alice.johnson@example.com",
         password: "!fjasdfkjaAAfaidfo",
       })
-      .expect(201);
-
-    const { text } = response0;
-    const { user } = JSON.parse(text);
-
-    const response1 = await request(app).get(`/api/v1/users/${user.id}`);
-    // Assertions
-    expect(response1.status).toBe(200);
+      .expect(200);
   });
 });

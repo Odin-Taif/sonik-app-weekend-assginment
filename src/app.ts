@@ -2,7 +2,6 @@ import express, { Router } from "express";
 import cookieParser from "cookie-parser";
 import { createPostFeature } from "./features/postManagment/postFeature";
 import { createUserFeature } from "./features/userManagment/userFeatures";
-import { verifyLogin } from "./middleware";
 
 export function createApp() {
   const app = express();
