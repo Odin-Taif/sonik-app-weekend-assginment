@@ -4,7 +4,6 @@ This README provides an overview of the API endpoints available in this applicat
 
 ## Features
 
-
 - **Post Management**: Create, read, update, and delete posts.
 - **User Management**: Create and retrieve user profiles.
 
@@ -23,13 +22,13 @@ You can view the video demonstration for this project [here](https://youtu.be/tc
 ## Table of Contents
 
 - [Installation](#installation)
+- [Online API](https://salt.odinobusi.online/status)
 - [Usage](#usage)
 - [Postman Collection](#postman-collection)
 - [Authentication](#authentication)
 - [Endpoints](#endpoints)
   - [Posts](#posts)
   - [Users](#users)
-- [Presentation Video Requirements](#presentation-video-requirements)
 - [Notes](#notes)
 
 ---
@@ -39,10 +38,12 @@ You can view the video demonstration for this project [here](https://youtu.be/tc
 Follow these steps to set up the project locally:
 
 1. **Clone the Repository**:
+
    ```bash
    git clone git@github.com:Odin-Taif/sonik-app-weekend-assginment.git
 
    ```
+
 2. **Install Dependencies**:
    ```bash
    npm install
@@ -187,7 +188,6 @@ You can access the Postman collection for this project [here](https://spicy5.pos
   - **404 Not Found**: User does not exist.
 
 ---
-
 
 ## Notes
 
