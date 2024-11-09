@@ -1,7 +1,6 @@
 import express from "express";
 import { Service } from "./userService";
 import { v4 as uuidv4 } from "uuid";
-import { verifyLogin } from "../../middleware";
 import { setTokenCookie } from "../../utils";
 
 export function createUserRouter(service: Service) {
