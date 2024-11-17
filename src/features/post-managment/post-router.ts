@@ -1,6 +1,6 @@
 import express from "express";
-import { Service } from "./postServices";
-import { verifyLogin } from "../../middleware/verifyLogin";
+import { Service } from "./post-services";
+import { verifyLogin } from "../../middleware/verify-login";
 
 export function createPostRouter(service: Service) {
   const router: express.Router = express.Router();

@@ -1,5 +1,5 @@
 import express from "express";
-import { Service } from "./userService";
+import { Service } from "./user-service";
 import { v4 as uuidv4 } from "uuid";
 import { setTokenCookie } from "../../utils";
 

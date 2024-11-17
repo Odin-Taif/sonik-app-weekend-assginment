@@ -1,6 +1,6 @@
-import { CreatePostDb } from "./postRepositroy";
-import { createPostRouter } from "./postRouter";
-import { PostServices } from "./postServices";
+import { CreatePostDb } from "./post-repositroy";
+import { createPostRouter } from "./post-router";
+import { PostServices } from "./post-services";
 
 export function createPostFeature() {
   const db = CreatePostDb();

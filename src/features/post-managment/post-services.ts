@@ -1,8 +1,5 @@
-import {
-  createPostDataSchema,
-  updatePostDataSchema,
-} from "../../validation/zod-validation";
-import { Db } from "./postRepositroy";
+import { createPostDataSchema, updatePostDataSchema } from "./zod-validation";
+import { Db } from "./post-repositroy";
 import { PostData, UpdatePostData } from "./types";
 import { v4 as uuidv4 } from "uuid";
 

@@ -1,1 +1,1 @@
-export * from "./verifyLogin";
+export * from "./verify-login";

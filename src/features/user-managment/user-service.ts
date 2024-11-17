@@ -2,8 +2,8 @@ import { User } from "../../../types";
 import {
   createUserSchema,
   signinUserSchema,
-} from "../../validation/zod-validation";
-import { Db } from "./userRepositroy";
+} from "../post-managment/zod-validation";
+import { Db } from "./user-repositroy";
 import { v4 as uuidv4 } from "uuid";
 import { hashSync } from "bcryptjs";
 

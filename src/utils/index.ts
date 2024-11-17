@@ -1,2 +1,2 @@
-export * from "./generateToken";
-export * from "./setTokenCookies";
+export * from "./generate-token";
+export * from "./set-token-cookies";
